@@ -28,6 +28,7 @@ using AppKit;
 using CoreGraphics;
 using ObjCRuntime;
 using Foundation;
+using MonoDevelop.Components.AtkCocoaHelper;
 
 namespace Gtk
 {
@@ -85,6 +86,11 @@ namespace Gtk
 			this.view = view ?? throw new ArgumentNullException (nameof (view));
 
 			WidgetFlags |= WidgetFlags.NoWindow;
+			Accessible.SetRole (AtkCocoa.Roles.AXGroup);
+
+			var accessibility = AtkCocoaMacExtensions.GetNSAccessibilityElement (Accessible);
+			accessibility.AccessibilityElement = true;
+			accessibility.AccessibilityChildren = new NSObject [] { view };
 		}
 
 		void UpdateViewFrame ()
