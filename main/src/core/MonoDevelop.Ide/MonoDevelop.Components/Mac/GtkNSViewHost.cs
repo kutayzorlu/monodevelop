@@ -191,7 +191,7 @@ namespace Gtk
 					superview.AddSubview (view);
 					superview.SortSubviews (CompareViews);
 					//we don't want include gdk_quartz children in accessibility navigation hierarchy
-					superview.AccessibilityChildren = new NSObject [0];
+					superview.AccessibilityChildren = Array.Empty<NSObject> ();
 				}
 				base.OnRealized ();
 
