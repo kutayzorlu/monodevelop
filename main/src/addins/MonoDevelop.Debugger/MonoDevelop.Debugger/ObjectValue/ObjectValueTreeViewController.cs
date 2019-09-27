@@ -153,8 +153,10 @@ namespace MonoDevelop.Debugger
 			}
 		}
 
-		void ConfigureView ()
+		protected void ConfigureView (IObjectValueTreeView control)
 		{
+			view = control;
+
 			view.AllowExpanding = AllowExpanding;
 			view.PinnedWatch = PinnedWatch;
 
@@ -179,9 +181,7 @@ namespace MonoDevelop.Debugger
 
 			var control = new GtkObjectValueTreeView (this, this, AllowEditing, headersVisible, compactView, allowPinning, allowPopupMenu, rootPinVisible);
 
-			view = control;
-
-			ConfigureView ();
+			ConfigureView (control);
 
 			return control;
 		}
@@ -194,9 +194,7 @@ namespace MonoDevelop.Debugger
 
 			var control = new MacObjectValueTreeView (this, this, AllowEditing, headersVisible, compactView, allowPinning, allowPopupMenu, rootPinVisible);
 
-			view = control;
-
-			ConfigureView ();
+			ConfigureView (control);
 
 			return control;
 		}
